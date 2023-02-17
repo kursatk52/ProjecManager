@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+
 struct ProjectAddView: View {
     
-    @State private var temp_project : Project = Project(name: "", description: "")
+    @EnvironmentObject private var projectVM : ProjectViewModel
+    
+    @State private var temp_project : Project = Project(name: "", description: "", todos: [])
     @Binding var isBool : Bool
     var body: some View {
         NavigationView{
@@ -49,6 +52,13 @@ struct ProjectAddView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
                         // TODO: Save temp_project to real project.
+                        do{
+                          try projectVM.createProject(project: temp_project)
+                        }catch {
+                            print("Proje ekleme view'inda, ekleme sırasında hata: \n" + error.localizedDescription)
+                        }
+                        temp_project = ProjectViewModel.emptyProject
+                        isBool = false
                     }.tint(Color.green)
                 }
                 ToolbarItem(placement: .cancellationAction) {

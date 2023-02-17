@@ -8,8 +8,9 @@
 import Foundation
 
 
-struct Project: Identifiable{
+struct Project : Identifiable{
     var id : UUID? = UUID()
     var name : String
     var description : String
+    var todos : [Todo] = []
 }

@@ -8,16 +8,27 @@
 import Foundation
 
 class ProjectViewModel : ObservableObject{
-    @Published var projects : [Project] = [Project(name: "Project Example 1 Name", description: "Description example for"),
-                                           Project(name: "Project Example 2 Name", description: "Description example for example project 2"),
-                                           Project(name: "Project Example 3 Name", description: "Description example for example project 3")]
+    @Published var projects : [Project] = [Project(name: "Project Example 1 Name", description: "Description example for",todos: []),
+                                           Project(name: "Project Example 2 Name", description: "Description example for example project 2",todos: []),
+                                           Project(name: "Project Example 3 Name", description: "Description example for example project 3",todos: [])]
+    
+    init() {
+        projects[0].todos.append(Todo(title: "İlk Yapılacak Şey", description: "Yapılacak şeyi açıklayan yazı.", status: .ToDo))
+        projects[0].todos.append(Todo(title: "İkinci Yapılacak Şey", description: "İkinci Yapılacak şeyi açıklayan yazı.", status: .ToDo))
+    }
+    
     
     
     // Creates projects.
     func createProject(project : Project) throws -> Bool{
+        
         if !isExistProject(project: project){
-            projects.append(project)
-            return true
+            
+            if !project.name.isEmpty{
+                projects.append(project)
+                return true
+            }
+            throw ProjectErrors.ProjectNameCannotBeNull
         }else{
             throw ProjectErrors.AlreadyExistError
         }
@@ -52,6 +63,8 @@ class ProjectViewModel : ObservableObject{
         }
     }
     
+    // Gets project with same ID
+    
     
     //Checks if exist project with same id with [project]
     private func isExistProject(project : Project) -> Bool {
@@ -62,6 +75,36 @@ class ProjectViewModel : ObservableObject{
         }
         // print("YOH BULUNAMADI.")
         return false
+    }
+    
+    
+    
+    // Edit todo in specified project
+    
+    func editTodo(project: Project, todo: Todo) throws{
+        if let findProject = projects.first(where: {$0.id == project.id}){
+            if var findTodo = findProject.todos.first(where: {$0.id == todo.id}){
+                findTodo.title = todo.title
+                findTodo.description = todo.description
+                findTodo.status = todo.status
+                
+            }else{
+                throw TodoErrors.TodoNotFound
+            }
+        }else{
+            throw ProjectErrors.ProjectNotFound
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    static var emptyProject : Project{
+        return Project(name: "", description: "",todos: [])
     }
     
 }

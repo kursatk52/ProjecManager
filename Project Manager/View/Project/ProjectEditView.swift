@@ -11,7 +11,7 @@ struct ProjectEditView: View {
     
     @EnvironmentObject private var projectVM : ProjectViewModel
     
-    @State var temp_project : Project
+    @Binding var temp_project : Project
     @Binding var isBool : Bool
     
     @State private var deleteConfirmationAlert  = false
@@ -33,7 +33,6 @@ struct ProjectEditView: View {
                         }
                     }
 
-                    
                     Section{
                         VStack(alignment: .leading) {
                             Text("Project Description:")
@@ -61,11 +60,9 @@ struct ProjectEditView: View {
                     Button("Save") {
                         do{
                             if try projectVM.editProject(project: temp_project) {
-                                // TODO: Başarılı mesajı
                                 print("Proje düzenlendi.")
                             }
                         } catch {
-                            // TODO: Hata meydana geldi mesajı
                             print("Proje düzenleme sırasında hata: \n" + error.localizedDescription)
                         }
                         isBool.toggle()
@@ -84,7 +81,7 @@ struct ProjectEditView: View {
             .navigationTitle("Edit Project")
             
             .confirmationDialog("Emin misin?", isPresented: $deleteConfirmationAlert) {
-                Button("Delete all items") {
+                Button("Delete item") {
                     do{
                         if try projectVM.deleteProject(project: temp_project){
                             isBool.toggle()
@@ -102,6 +99,6 @@ struct ProjectEditView: View {
 
 struct ProjectEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectEditView(temp_project: Project(name: "DenemeProject", description: ""), isBool: .constant(true))
+        ProjectEditView(temp_project: .constant(Project(name: "DenemeProject", description: "",todos: [])), isBool: .constant(true))
     }
 }

@@ -16,6 +16,11 @@
 		E3896231299CC8FF00EC80FB /* ProjectAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896230299CC8FF00EC80FB /* ProjectAddView.swift */; };
 		E3896234299CCA2F00EC80FB /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896233299CCA2F00EC80FB /* ProjectViewModel.swift */; };
 		E3896238299CCBE200EC80FB /* ProjectErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896237299CCBE200EC80FB /* ProjectErrors.swift */; };
+		E3896241299D0A5000EC80FB /* ListTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896240299D0A5000EC80FB /* ListTodoView.swift */; };
+		E3896243299D0E0C00EC80FB /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896242299D0E0C00EC80FB /* Todo.swift */; };
+		E3896245299D0E5100EC80FB /* TodoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896244299D0E5100EC80FB /* TodoStatus.swift */; };
+		E3896247299D22EC00EC80FB /* TodoEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896246299D22EC00EC80FB /* TodoEditView.swift */; };
+		E3896249299D28F200EC80FB /* TodoErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896248299D28F200EC80FB /* TodoErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 		E3896230299CC8FF00EC80FB /* ProjectAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddView.swift; sourceTree = "<group>"; };
 		E3896233299CCA2F00EC80FB /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
 		E3896237299CCBE200EC80FB /* ProjectErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectErrors.swift; sourceTree = "<group>"; };
+		E3896240299D0A5000EC80FB /* ListTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTodoView.swift; sourceTree = "<group>"; };
+		E3896242299D0E0C00EC80FB /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		E3896244299D0E5100EC80FB /* TodoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoStatus.swift; sourceTree = "<group>"; };
+		E3896246299D22EC00EC80FB /* TodoEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEditView.swift; sourceTree = "<group>"; };
+		E3896248299D28F200EC80FB /* TodoErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +93,7 @@
 		E3184C9D299AFA3D001B112F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E389623F299D0A4100EC80FB /* Todo */,
 				E3896232299CCA1A00EC80FB /* Project */,
 			);
 			path = View;
@@ -100,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				E3184CA0299AFABF001B112F /* Project.swift */,
+				E3896242299D0E0C00EC80FB /* Todo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,8 +130,19 @@
 			isa = PBXGroup;
 			children = (
 				E3896237299CCBE200EC80FB /* ProjectErrors.swift */,
+				E3896244299D0E5100EC80FB /* TodoStatus.swift */,
+				E3896248299D28F200EC80FB /* TodoErrors.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		E389623F299D0A4100EC80FB /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				E3896240299D0A5000EC80FB /* ListTodoView.swift */,
+				E3896246299D22EC00EC80FB /* TodoEditView.swift */,
+			);
+			path = Todo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +217,14 @@
 			files = (
 				E3896231299CC8FF00EC80FB /* ProjectAddView.swift in Sources */,
 				E3184CA3299C28C8001B112F /* ProjectEditView.swift in Sources */,
+				E3896241299D0A5000EC80FB /* ListTodoView.swift in Sources */,
+				E3896245299D0E5100EC80FB /* TodoStatus.swift in Sources */,
 				E3896238299CCBE200EC80FB /* ProjectErrors.swift in Sources */,
+				E3896243299D0E0C00EC80FB /* Todo.swift in Sources */,
+				E3896249299D28F200EC80FB /* TodoErrors.swift in Sources */,
 				E3184C92299AF9F8001B112F /* ListProjectsView.swift in Sources */,
 				E3184C90299AF9F8001B112F /* Project_ManagerApp.swift in Sources */,
+				E3896247299D22EC00EC80FB /* TodoEditView.swift in Sources */,
 				E3184CA1299AFABF001B112F /* Project.swift in Sources */,
 				E3896234299CCA2F00EC80FB /* ProjectViewModel.swift in Sources */,
 			);

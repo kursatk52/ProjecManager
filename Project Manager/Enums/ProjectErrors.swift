@@ -10,7 +10,7 @@ import Foundation
 enum ProjectErrors : Error, LocalizedError{
     case AlreadyExistError
     case ProjectNotFound
-    
+    case ProjectNameCannotBeNull
     
     public var errorDescription : String?{
         switch self{
@@ -18,6 +18,9 @@ enum ProjectErrors : Error, LocalizedError{
             return "Belirtilen ID'ye sahip proje bulunamadı."
         case .AlreadyExistError:
             return "Aynı ID'ye sahip proje zaten bulunmaktadır."
+        case .ProjectNameCannotBeNull:
+            return "Projenin ismi boş bırakılamaz."
         }
+        
     }
 }
