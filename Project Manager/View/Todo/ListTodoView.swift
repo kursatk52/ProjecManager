@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ListTodoView: View {
     
-    @State var project : Project
+    
     
     @EnvironmentObject private var projectVM : ProjectViewModel
     
+    var project : Project
     @State private var selectedStatus : TodoStatus = .ToDo
     @State private var isEdit : Bool = false
     @State private var temp_todo : Todo = Todo(title: "", description: "", status: .ToDo)
@@ -29,8 +30,8 @@ struct ListTodoView: View {
                 .pickerStyle(.segmented)
                 
                 List {
-                    // project.todos.filter({$0.status == selectedStatus})
-                    ForEach(projectVM.projects[0].todos) { todo in
+                    
+                    ForEach(projectVM.projects.first(where: {$0.id == project.id})!.todos.filter({$0.status == selectedStatus})) { todo in
                         VStack(alignment: .leading){
                             Text(todo.title).font(.headline)
                             Text(todo.description).lineLimit(1).font(.callout)
@@ -91,7 +92,7 @@ struct ListTodoView: View {
                 })
                 .listStyle(.insetGrouped)
                 .sheet(isPresented: $isEdit) {
-                    TodoEditView( project: $project,temp_todo: $temp_todo, isBool: $isEdit)
+                    TodoEditView( project: project,temp_todo: $temp_todo, isBool: $isEdit)
                 }
                 
                 Spacer()

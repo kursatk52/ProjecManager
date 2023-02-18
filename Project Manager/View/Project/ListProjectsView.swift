@@ -80,7 +80,7 @@ struct ListProjectsView: View {
             .confirmationDialog("Emin misin?", isPresented: $deleteConfirmationAlert) {
                 Button("Delete the item") {
                     do{
-                        try projectVM.deleteProject(project: temp_project)
+                        let _ = try projectVM.deleteProject(project: temp_project)
                         
                     } catch {
                         print("Proje silme sırasında hata: \n" + error.localizedDescription)

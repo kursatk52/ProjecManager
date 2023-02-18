@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodoEditView: View {
     
-    @Binding var project : Project
+    var project : Project
     
     @EnvironmentObject private var projectVM : ProjectViewModel
     
@@ -25,6 +25,7 @@ struct TodoEditView: View {
                             Text("Todo Name: ")
                             VStack {
                                 TextField(temp_todo.title, text: $temp_todo.title)
+                                    .autocorrectionDisabled()
                                 Divider()
                                     .offset(y:-5)
                             }
@@ -60,7 +61,6 @@ struct TodoEditView: View {
                             // TODO: Save changes
                             do{
                                 try projectVM.editTodo(project: project, todo: temp_todo)
-                                project = projectVM.projects[0]
                             }catch{
                                 print("Proje düzenleme sırasında hata: \n" + error.localizedDescription)
                             }

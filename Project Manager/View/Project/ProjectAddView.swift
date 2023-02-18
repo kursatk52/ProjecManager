@@ -53,7 +53,7 @@ struct ProjectAddView: View {
                     Button("Add") {
                         // TODO: Save temp_project to real project.
                         do{
-                          try projectVM.createProject(project: temp_project)
+                          let _ = try projectVM.createProject(project: temp_project)
                         }catch {
                             print("Proje ekleme view'inda, ekleme sırasında hata: \n" + error.localizedDescription)
                         }

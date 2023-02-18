@@ -78,15 +78,29 @@ class ProjectViewModel : ObservableObject{
     }
     
     
+    private func isExistTodo(project : Project, todo: Todo) -> Bool{
+        if project.todos.contains(where: {$0.id == todo.id}){
+            return true
+        }
+        return false
+    }
     
     // Edit todo in specified project
-    
     func editTodo(project: Project, todo: Todo) throws{
-        if let findProject = projects.first(where: {$0.id == project.id}){
-            if var findTodo = findProject.todos.first(where: {$0.id == todo.id}){
-                findTodo.title = todo.title
-                findTodo.description = todo.description
-                findTodo.status = todo.status
+        if isExistProject(project: project){
+            if isExistTodo(project: project, todo: todo){
+                
+                for (index,project_elem) in projects.enumerated(){
+                    if project_elem.id == project.id{
+                        for (todo_index,todo_elem) in projects[index].todos.enumerated(){
+                            if todo_elem.id == todo.id{
+                                projects[index].todos[todo_index].title = todo.title
+                                projects[index].todos[todo_index].description = todo.description
+                                projects[index].todos[todo_index].status = todo.status
+                            }
+                        }
+                    }
+                }
                 
             }else{
                 throw TodoErrors.TodoNotFound
@@ -94,7 +108,6 @@ class ProjectViewModel : ObservableObject{
         }else{
             throw ProjectErrors.ProjectNotFound
         }
-        
     }
     
     

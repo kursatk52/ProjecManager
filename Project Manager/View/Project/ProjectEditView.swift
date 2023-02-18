@@ -26,6 +26,7 @@ struct ProjectEditView: View {
                             Text("Project Name: ")
                             VStack {
                                 TextField(temp_project.name, text: $temp_project.name)
+                                    .autocorrectionDisabled()
                                 Divider()
                                     .offset(y:-5)
                             }
