@@ -15,6 +15,9 @@
 		E3184CA3299C28C8001B112F /* ProjectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3184CA2299C28C8001B112F /* ProjectEditView.swift */; };
 		E3221EFF29A21D81008BBAC2 /* TodoAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3221EFE29A21D81008BBAC2 /* TodoAddView.swift */; };
 		E3221F0129A22229008BBAC2 /* TodoShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3221F0029A22229008BBAC2 /* TodoShowView.swift */; };
+		E3221F0429A25ED8008BBAC2 /* ContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3221F0329A25ED8008BBAC2 /* ContentManager.swift */; };
+		E3221F0629A25FE2008BBAC2 /* ContentManagerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3221F0529A25FE2008BBAC2 /* ContentManagerErrors.swift */; };
+		E3221F0829A260CD008BBAC2 /* projects.json in Resources */ = {isa = PBXBuildFile; fileRef = E3221F0729A260CD008BBAC2 /* projects.json */; };
 		E3896231299CC8FF00EC80FB /* ProjectAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896230299CC8FF00EC80FB /* ProjectAddView.swift */; };
 		E3896234299CCA2F00EC80FB /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896233299CCA2F00EC80FB /* ProjectViewModel.swift */; };
 		E3896238299CCBE200EC80FB /* ProjectErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896237299CCBE200EC80FB /* ProjectErrors.swift */; };
@@ -35,6 +38,9 @@
 		E3184CA2299C28C8001B112F /* ProjectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditView.swift; sourceTree = "<group>"; };
 		E3221EFE29A21D81008BBAC2 /* TodoAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAddView.swift; sourceTree = "<group>"; };
 		E3221F0029A22229008BBAC2 /* TodoShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoShowView.swift; sourceTree = "<group>"; };
+		E3221F0329A25ED8008BBAC2 /* ContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentManager.swift; sourceTree = "<group>"; };
+		E3221F0529A25FE2008BBAC2 /* ContentManagerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentManagerErrors.swift; sourceTree = "<group>"; };
+		E3221F0729A260CD008BBAC2 /* projects.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = projects.json; sourceTree = "<group>"; };
 		E3896230299CC8FF00EC80FB /* ProjectAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddView.swift; sourceTree = "<group>"; };
 		E3896233299CCA2F00EC80FB /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
 		E3896237299CCBE200EC80FB /* ProjectErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectErrors.swift; sourceTree = "<group>"; };
@@ -75,10 +81,12 @@
 		E3184C8E299AF9F8001B112F /* Project Manager */ = {
 			isa = PBXGroup;
 			children = (
+				E3221F0229A25EAB008BBAC2 /* Storage */,
 				E3896236299CCBD400EC80FB /* Enums */,
 				E3184C9F299AFA56001B112F /* Model */,
 				E3184C9E299AFA45001B112F /* ViewModel */,
 				E3184C9D299AFA3D001B112F /* View */,
+				E3221F0729A260CD008BBAC2 /* projects.json */,
 				E3184C8F299AF9F8001B112F /* Project_ManagerApp.swift */,
 				E3184C93299AF9F8001B112F /* Assets.xcassets */,
 				E3184C95299AF9F8001B112F /* Preview Content */,
@@ -120,6 +128,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E3221F0229A25EAB008BBAC2 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				E3221F0329A25ED8008BBAC2 /* ContentManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		E3896232299CCA1A00EC80FB /* Project */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +152,7 @@
 				E3896237299CCBE200EC80FB /* ProjectErrors.swift */,
 				E3896244299D0E5100EC80FB /* TodoStatus.swift */,
 				E3896248299D28F200EC80FB /* TodoErrors.swift */,
+				E3221F0529A25FE2008BBAC2 /* ContentManagerErrors.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -210,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3184C97299AF9F8001B112F /* Preview Assets.xcassets in Resources */,
+				E3221F0829A260CD008BBAC2 /* projects.json in Resources */,
 				E3184C94299AF9F8001B112F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,12 +240,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3221EFF29A21D81008BBAC2 /* TodoAddView.swift in Sources */,
+				E3221F0429A25ED8008BBAC2 /* ContentManager.swift in Sources */,
 				E3221F0129A22229008BBAC2 /* TodoShowView.swift in Sources */,
 				E3896231299CC8FF00EC80FB /* ProjectAddView.swift in Sources */,
 				E3184CA3299C28C8001B112F /* ProjectEditView.swift in Sources */,
 				E3896241299D0A5000EC80FB /* ListTodoView.swift in Sources */,
 				E3896245299D0E5100EC80FB /* TodoStatus.swift in Sources */,
 				E3896238299CCBE200EC80FB /* ProjectErrors.swift in Sources */,
+				E3221F0629A25FE2008BBAC2 /* ContentManagerErrors.swift in Sources */,
 				E3896243299D0E0C00EC80FB /* Todo.swift in Sources */,
 				E3896249299D28F200EC80FB /* TodoErrors.swift in Sources */,
 				E3184C92299AF9F8001B112F /* ListProjectsView.swift in Sources */,

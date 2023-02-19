@@ -10,7 +10,7 @@ import SwiftUI
 struct ListProjectsView: View {
     
     @StateObject private var projectVM : ProjectViewModel = ProjectViewModel()
-    
+
     
     @State private var isEdit = false
     @State private var isCreateNewProject = false
@@ -90,11 +90,15 @@ struct ListProjectsView: View {
             } message: {
                 Text("Yapılan işlem geri alınamaz")
             }
+            .onAppear{
+                projectVM.load()
+            }
         }
         .sheet(isPresented: $isCreateNewProject) {
             ProjectAddView(isBool: $isCreateNewProject)
         }
         .environmentObject(projectVM)
+        
     }
 }
 

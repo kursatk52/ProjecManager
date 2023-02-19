@@ -8,16 +8,37 @@
 import Foundation
 
 class ProjectViewModel : ObservableObject{
-    @Published var projects : [Project] = [Project(name: "Project Example 1 Name", description: "Description example for",todos: []),
-                                           Project(name: "Project Example 2 Name", description: "Description example for example project 2",todos: []),
-                                           Project(name: "Project Example 3 Name", description: "Description example for example project 3",todos: [])]
+    @Published var projects : [Project] = []
     
-    init() {
-        projects[0].todos.append(Todo(title: "İlk Yapılacak Şey", description: "Yapılacak şeyi açıklayan yazı.", status: .ToDo))
-        projects[0].todos.append(Todo(title: "İkinci Yapılacak Şey", description: "İkinci Yapılacak şeyi açıklayan yazı.", status: .ToDo))
+    
+    private var contentManager = ContentManager()
+    
+  
+    
+    // Save
+    func save(){
+        do{
+            try contentManager.saveFile(projects: projects)
+        }catch{
+            print(error.localizedDescription)
+        }
     }
     
-    
+    // Load
+    func load(){
+        
+        do{
+            let temp_projects = try contentManager.loadFile()
+            self.projects.removeAll()
+            for elements in temp_projects{
+                self.projects.append(elements)
+            }
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+
+    }
     
     // Creates projects.
     func createProject(project : Project) throws -> Bool{
@@ -26,6 +47,7 @@ class ProjectViewModel : ObservableObject{
             
             if !project.name.isEmpty{
                 projects.append(project)
+                save()
                 return true
             }
             throw ProjectErrors.ProjectNameCannotBeNull
@@ -40,6 +62,7 @@ class ProjectViewModel : ObservableObject{
             for (index,elem) in projects.enumerated(){
                 if elem.id == project.id{
                     projects.remove(at: index)
+                    save()
                 }
             }
             return true
@@ -55,6 +78,7 @@ class ProjectViewModel : ObservableObject{
                 if elem.id == project.id{
                     projects[index].name = project.name
                     projects[index].description = project.description
+                    save()
                 }
             }
             return true
@@ -120,6 +144,7 @@ class ProjectViewModel : ObservableObject{
                     for (todo_index, todo_elem) in projects[project_index].todos.enumerated(){
                         if (project_elem.id == project.id && todo_elem.id == todo.id){
                             projects[project_index].todos.remove(at: todo_index)
+                            save()
                             return true
                         }
                     }
@@ -148,6 +173,7 @@ class ProjectViewModel : ObservableObject{
                             default:
                                 return
                             }
+                            save()
                         }
                     }
                 }
@@ -177,6 +203,7 @@ class ProjectViewModel : ObservableObject{
                             default:
                                 return
                             }
+                            save()
                         }
                     }
                 }
@@ -197,6 +224,7 @@ class ProjectViewModel : ObservableObject{
                     for (todo_index, todo_elem) in projects[project_index].todos.enumerated(){
                         if(project_elem.id == project.id && todo_elem.id == todo.id){
                             projects[project_index].todos[todo_index].status = .Done
+                            save()
                         }
                     }
                 }
@@ -214,6 +242,7 @@ class ProjectViewModel : ObservableObject{
             for (project_index, project_elem) in projects.enumerated(){
                 if (project_elem.id == project.id && todo.id != nil && !todo.title.isEmpty){
                     projects[project_index].todos.append(todo)
+                    save()
                     return
                 }
             }
@@ -221,6 +250,10 @@ class ProjectViewModel : ObservableObject{
             throw ProjectErrors.ProjectNotFound
         }
     }
+    
+    
+    
+    
     
     static var emptyProject : Project{
         return Project(name: "", description: "",todos: [])
