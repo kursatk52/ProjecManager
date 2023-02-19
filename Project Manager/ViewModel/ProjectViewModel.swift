@@ -78,6 +78,7 @@ class ProjectViewModel : ObservableObject{
     }
     
     
+    // Checks and returns true if [todo] is exist in [project], oherwise false.
     private func isExistTodo(project : Project, todo: Todo) -> Bool{
         if project.todos.contains(where: {$0.id == todo.id}){
             return true
@@ -111,10 +112,115 @@ class ProjectViewModel : ObservableObject{
     }
     
     
+    // Deletes [todo] in [project].
+    func deleteTodo(project: Project, todo: Todo) throws -> Bool{
+        if isExistProject(project: project){
+            if isExistTodo(project: project, todo: todo){
+                for (project_index, project_elem) in self.projects.enumerated(){
+                    for (todo_index, todo_elem) in projects[project_index].todos.enumerated(){
+                        if (project_elem.id == project.id && todo_elem.id == todo.id){
+                            projects[project_index].todos.remove(at: todo_index)
+                            return true
+                        }
+                    }
+                }
+                return false
+            }else{
+                throw TodoErrors.TodoNotFound
+            }
+        }else{
+            throw ProjectErrors.ProjectNotFound
+        }
+    }
+    
+    // Change status next one. To Do -> In Progress -> Done
+    func forwardStatus(project : Project, todo : Todo) throws{
+        if isExistProject(project: project){
+            if isExistTodo(project: project, todo: todo){
+                for (project_index, project_elem) in projects.enumerated(){
+                    for (todo_index, todo_elem) in projects[project_index].todos.enumerated(){
+                        if(project_elem.id == project.id && todo_elem.id == todo.id){
+                            switch projects[project_index].todos[todo_index].status{
+                            case .ToDo:
+                                projects[project_index].todos[todo_index].status = .InProgress
+                            case .InProgress:
+                                projects[project_index].todos[todo_index].status = .Done
+                            default:
+                                return
+                            }
+                        }
+                    }
+                }
+            }else{
+                throw TodoErrors.TodoNotFound
+            }
+        }else{
+            throw ProjectErrors.ProjectNotFound
+        }
+    }
     
     
     
     
+    // Change status previous one. Done -> In Progress -> To Do
+    func previousStatus(project : Project, todo : Todo) throws{
+        if isExistProject(project: project){
+            if isExistTodo(project: project, todo: todo){
+                for (project_index, project_elem) in projects.enumerated(){
+                    for (todo_index, todo_elem) in projects[project_index].todos.enumerated(){
+                        if(project_elem.id == project.id && todo_elem.id == todo.id){
+                            switch projects[project_index].todos[todo_index].status{
+                            case .Done:
+                                projects[project_index].todos[todo_index].status = .InProgress
+                            case .InProgress:
+                                projects[project_index].todos[todo_index].status = .ToDo
+                            default:
+                                return
+                            }
+                        }
+                    }
+                }
+            }else{
+                throw TodoErrors.TodoNotFound
+            }
+        }else{
+            throw ProjectErrors.ProjectNotFound
+        }
+    }
+    
+   
+    // Change status previous one. Done -> In Progress -> To Do
+    func done(project : Project, todo : Todo) throws{
+        if isExistProject(project: project){
+            if isExistTodo(project: project, todo: todo){
+                for (project_index, project_elem) in projects.enumerated(){
+                    for (todo_index, todo_elem) in projects[project_index].todos.enumerated(){
+                        if(project_elem.id == project.id && todo_elem.id == todo.id){
+                            projects[project_index].todos[todo_index].status = .Done
+                        }
+                    }
+                }
+            }else{
+                throw TodoErrors.TodoNotFound
+            }
+        }else{
+            throw ProjectErrors.ProjectNotFound
+        }
+    }
+    
+    // Create new [todo] and add to [project]
+    func createTodo(project : Project, todo : Todo) throws{
+        if isExistProject(project: project){
+            for (project_index, project_elem) in projects.enumerated(){
+                if (project_elem.id == project.id && todo.id != nil && !todo.title.isEmpty){
+                    projects[project_index].todos.append(todo)
+                    return
+                }
+            }
+        }else{
+            throw ProjectErrors.ProjectNotFound
+        }
+    }
     
     static var emptyProject : Project{
         return Project(name: "", description: "",todos: [])

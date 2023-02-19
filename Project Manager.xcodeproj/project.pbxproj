@@ -13,6 +13,8 @@
 		E3184C97299AF9F8001B112F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3184C96299AF9F8001B112F /* Preview Assets.xcassets */; };
 		E3184CA1299AFABF001B112F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3184CA0299AFABF001B112F /* Project.swift */; };
 		E3184CA3299C28C8001B112F /* ProjectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3184CA2299C28C8001B112F /* ProjectEditView.swift */; };
+		E3221EFF29A21D81008BBAC2 /* TodoAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3221EFE29A21D81008BBAC2 /* TodoAddView.swift */; };
+		E3221F0129A22229008BBAC2 /* TodoShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3221F0029A22229008BBAC2 /* TodoShowView.swift */; };
 		E3896231299CC8FF00EC80FB /* ProjectAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896230299CC8FF00EC80FB /* ProjectAddView.swift */; };
 		E3896234299CCA2F00EC80FB /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896233299CCA2F00EC80FB /* ProjectViewModel.swift */; };
 		E3896238299CCBE200EC80FB /* ProjectErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3896237299CCBE200EC80FB /* ProjectErrors.swift */; };
@@ -31,6 +33,8 @@
 		E3184C96299AF9F8001B112F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E3184CA0299AFABF001B112F /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E3184CA2299C28C8001B112F /* ProjectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditView.swift; sourceTree = "<group>"; };
+		E3221EFE29A21D81008BBAC2 /* TodoAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAddView.swift; sourceTree = "<group>"; };
+		E3221F0029A22229008BBAC2 /* TodoShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoShowView.swift; sourceTree = "<group>"; };
 		E3896230299CC8FF00EC80FB /* ProjectAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddView.swift; sourceTree = "<group>"; };
 		E3896233299CCA2F00EC80FB /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
 		E3896237299CCBE200EC80FB /* ProjectErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectErrors.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			children = (
 				E3896240299D0A5000EC80FB /* ListTodoView.swift */,
 				E3896246299D22EC00EC80FB /* TodoEditView.swift */,
+				E3221EFE29A21D81008BBAC2 /* TodoAddView.swift */,
+				E3221F0029A22229008BBAC2 /* TodoShowView.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -215,6 +221,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3221EFF29A21D81008BBAC2 /* TodoAddView.swift in Sources */,
+				E3221F0129A22229008BBAC2 /* TodoShowView.swift in Sources */,
 				E3896231299CC8FF00EC80FB /* ProjectAddView.swift in Sources */,
 				E3184CA3299C28C8001B112F /* ProjectEditView.swift in Sources */,
 				E3896241299D0A5000EC80FB /* ListTodoView.swift in Sources */,

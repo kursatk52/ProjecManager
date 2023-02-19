@@ -1,22 +1,20 @@
 //
-//  TodoEditView.swift
+//  TodoAddView.swift
 //  Project Manager
 //
-//  Created by Kursat Korkmaz on 15.02.2023.
+//  Created by Kursat Korkmaz on 19.02.2023.
 //
 
 import SwiftUI
 
-struct TodoEditView: View {
+struct TodoAddView: View {
     
     var project : Project
+    @Binding public var isBool : Bool
     
     @EnvironmentObject private var projectVM : ProjectViewModel
+    @State private var temp_todo : Todo = Todo(title: "", description: "", status: .ToDo)
     
-    @Binding var temp_todo : Todo
-    @Binding var isBool : Bool
-    
-    @State private var deleteConfirmationBool = false
     
     var body: some View {
         NavigationView{
@@ -66,9 +64,7 @@ struct TodoEditView: View {
                     
                 }
                 Spacer()
-                Button("Delete Todo from Project") {
-                    deleteConfirmationBool = true
-                }.tint(Color(.systemRed))
+                
                 
             }
             .background(Color(.systemGray6).ignoresSafeArea())
@@ -77,9 +73,9 @@ struct TodoEditView: View {
                         Button("Save") {
                             // TODO: Save changes
                             do{
-                                try projectVM.editTodo(project: project, todo: temp_todo)
+                                try projectVM.createTodo(project: project, todo: temp_todo)
                             }catch{
-                                print("Proje düzenleme sırasında hata: \n" + error.localizedDescription)
+                                print("Todo ekleme sırasında hata: \n" + error.localizedDescription)
                             }
                             isBool = false
                             
@@ -93,25 +89,12 @@ struct TodoEditView: View {
                         .tint(Color.red)
                     }
                 }
-            .confirmationDialog("Emin misin?", isPresented: $deleteConfirmationBool) {
-                Button("Delete the item") {
-                    deleteConfirmationBool = false
-                    isBool = false
-                    do{
-                        let _ = try projectVM.deleteTodo(project: project, todo: temp_todo)
-                    }catch{
-                        print("Proje düzenleme sırasında hata: \n" + error.localizedDescription)
-                    }
-                }
-            } message: {
-                Text("Are you sure to delete?")
-            }
         }
     }
 }
-    
-    struct TodoEditView_Previews: PreviewProvider {
-        static var previews: some View {
-            ListProjectsView()
-        }
+
+struct TodoAddView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListProjectsView()
     }
+}
