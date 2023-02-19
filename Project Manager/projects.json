@@ -1,1 +1,6 @@
-
+[
+    {"todos":[{"status":"To Do","id":"5CB77393-B0E4-4EA7-A733-AAF0BF42428D","title":"Go supermarket","description":"Buy some food for weekend party."},{"status":"In Progress","id":"89D29624-1D1A-48D3-8E4E-E9689FC3CC0A","title":"Do your project","description":"You need to finish project today."},{"status":"Done","id":"215542E9-4781-46B2-97BA-A6671D65E910","title":"Feed dog.","description":"Feed your dog."},{"status":"To Do","id":"20B0E5C9-4CE5-4492-88AF-30B558CABE94","title":"Prepare dinner","description":"Make some meal for dinner."}],
+        "id":"81AC659C-4CCB-4D22-A294-1F76ACC24DB3",
+        "name":"Daily Routine",
+        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+]

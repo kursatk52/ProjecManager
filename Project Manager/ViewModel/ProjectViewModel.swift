@@ -19,6 +19,7 @@ class ProjectViewModel : ObservableObject{
     func save(){
         do{
             try contentManager.saveFile(projects: projects)
+            
         }catch{
             print(error.localizedDescription)
         }

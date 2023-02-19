@@ -23,6 +23,7 @@ struct ContentManager{
         encoder.dataEncodingStrategy = .base64
         encoder.keyEncodingStrategy = .useDefaultKeys
         let jsonData = try encoder.encode(projects)
+        //print("JSON DATA ******\n" + String(data: jsonData, encoding: .utf8)!)
         try jsonData.write(to: fileURL)
     }
     

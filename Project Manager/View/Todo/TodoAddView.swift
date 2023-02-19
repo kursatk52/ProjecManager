@@ -24,8 +24,9 @@ struct TodoAddView: View {
                         HStack(alignment: .top){
                             Text("Todo Name: ")
                             VStack {
-                                TextField(temp_todo.title, text: $temp_todo.title)
+                                TextField("Enter the name", text: $temp_todo.title)
                                     .autocorrectionDisabled()
+                                
                                 Divider()
                                     .offset(y:-5)
                             }
@@ -52,12 +53,13 @@ struct TodoAddView: View {
                             Text("Todo Description:")
                             VStack {
                                 TextEditor(text: $temp_todo.description)
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 6)
-                                            .stroke(Color(.systemGray3), lineWidth: 2)
-                                    }
-                                    .frame(minHeight: 30)
-                                    .autocorrectionDisabled()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .stroke(Color(.systemGray3), lineWidth: 2)
+                                }
+                                .frame(minHeight: 40)
+                                .autocorrectionDisabled()
+                                
                             }
                         }
                     }

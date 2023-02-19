@@ -40,7 +40,7 @@ struct ProjectAddView: View {
                                         RoundedRectangle(cornerRadius: 6)
                                             .stroke(Color(.systemGray3), lineWidth: 2)
                                     }
-                                    .frame(minHeight: 10)
+                                    .frame(minHeight: 40)
                                     .autocorrectionDisabled()
                             }
                         }

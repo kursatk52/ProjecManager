@@ -37,77 +37,93 @@ struct ListTodoView: View {
                             TodoShowView(temp_todo: todo)
                         }
                         label: {
-                            VStack(alignment: .leading){
-                                Text(todo.title).font(.headline)
-                                Text(todo.description).lineLimit(1).font(.callout)
+                            HStack(alignment: .center, spacing: 16) {
+                                Image(systemName: selectedStatus.image)
+                                    .font(.system(size: 22))
+                                    .foregroundColor(Color(.systemTeal))
+                                    
+              
+                                VStack(alignment: .leading){
+                                    Text(todo.title).font(.headline).strikethrough(selectedStatus == .Done ? true : false)
+                                        .foregroundColor(selectedStatus.color)
+                                    Text(todo.description)
+                                        .lineLimit(1)
+                                        .font(.callout)
+                                        .foregroundColor(Color(.systemGray))
+                                }
+                                .swipeActions(edge: .leading) {
+                                    
+                                    if selectedStatus != .ToDo{
+                                        Button {
+                                            // Move previous status
+                                            do{
+                                                try projectVM.previousStatus(project: project, todo: todo)
+                                            }catch{
+                                                print("Proje todo previous hata: \n" + error.localizedDescription)
+                                            }
+                                            
+                                        } label: {
+                                            Label("", systemImage: "arrow.backward")
+                                        }
+                                        .tint(Color(.systemYellow))
+                                    }
+                                    
+                                    Button {
+                                        // Delete the [todo] in [project]
+                                        temp_todo = todo
+                                        deleteConfirmation = true
+                                    } label: {
+                                        Label("", systemImage: "trash")
+                                    }
+                                    .tint(Color(.systemRed))
+                                    
+                                    
+                                    
+                                    Button {
+                                        // Edit Todo Button
+                                        temp_todo = todo
+                                        isEdit = true
+                                    } label: {
+                                        Label("", systemImage: "square.and.pencil")
+                                    }
+                                    .tint(.black)
+                                }
+                                .swipeActions(edge: .trailing) {
+                                    
+                                    if selectedStatus != .Done{
+                                        Button {
+                                            // Moves forward status
+                                            do{
+                                                try projectVM.forwardStatus(project: project, todo: todo)
+                                            }catch{
+                                                print("Proje todo next hata: \n" + error.localizedDescription)
+                                            }
+                                            
+                                        } label: {
+                                            Label("", systemImage: "arrow.forward")
+                                        }
+                                        .tint(Color(.systemYellow))
+                                    }
+                                    
+                                    Button {
+                                        // Set status to Done
+                        
+                                        do{
+                                            try projectVM.done(project: project, todo: todo)
+                                        }catch{
+                                            print("Proje todo previous hata: \n" + error.localizedDescription)
+                                        }
+                                        
+                                    } label: {
+                                        Label("", systemImage: selectedStatus == .Done ? "checkmark.circle" : "hand.thumbsup")
+                                    }
+                                    .tint(Color(.systemGreen))
+                                }
                             }
-                            .swipeActions(edge: .leading) {
-                                
-                                Button {
-                                    // Move previous status
-                                    do{
-                                        try projectVM.previousStatus(project: project, todo: todo)
-                                    }catch{
-                                        print("Proje todo previous hata: \n" + error.localizedDescription)
-                                    }
-                                    
-                                } label: {
-                                    Label("", systemImage: "arrow.backward")
-                                }
-                                .tint(Color(.systemYellow))
-                                
-                                Button {
-                                    // Delete the [todo] in [project]
-                                    temp_todo = todo
-                                    deleteConfirmation = true
-                                } label: {
-                                    Label("", systemImage: "trash")
-                                }
-                                .tint(Color(.systemRed))
-                                
-                                
-                                
-                                Button {
-                                    // Edit Todo Button
-                                    temp_todo = todo
-                                    isEdit = true
-                                } label: {
-                                    Label("", systemImage: "square.and.pencil")
-                                }
-                                .tint(.black)
-                            }
-                            .swipeActions(edge: .trailing) {
-                                
-                                Button {
-                                    // Moves forward status
-                                    do{
-                                        try projectVM.forwardStatus(project: project, todo: todo)
-                                    }catch{
-                                        print("Proje todo next hata: \n" + error.localizedDescription)
-                                    }
-                                    
-                                } label: {
-                                    Label("", systemImage: "arrow.forward")
-                                }
-                                .tint(Color(.systemYellow))
-                                
-                                Button {
-                                    // Set status to Done
-                    
-                                    do{
-                                        try projectVM.done(project: project, todo: todo)
-                                    }catch{
-                                        print("Proje todo previous hata: \n" + error.localizedDescription)
-                                    }
-                                    
-                                } label: {
-                                    Label("", systemImage: "hand.thumbsup")
-                                }
-                                .tint(Color(.systemGreen))
-                        }
-                        }
+                        }.listRowSeparator(.hidden)
                     }
                 }
+                
                 .background(content: {
                     VStack {
                         Text("There is no record")
@@ -124,11 +140,11 @@ struct ListTodoView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle(project.name)
+            .navigationTitle("📃 " + project.name)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        // TODO: Add new Todo to project
+                        // Add new Todo to project
                         isAddTodo = true
                     } label: {
                         Label("", systemImage: "plus")
@@ -137,7 +153,7 @@ struct ListTodoView: View {
                 }
             }
             .background(Color(.systemGray6))
-            .confirmationDialog("Emin misin?", isPresented: $deleteConfirmation) {
+            .confirmationDialog("Are yo sure?", isPresented: $deleteConfirmation) {
                 Button("Delete the item") {
                     deleteConfirmation = false
                     do{

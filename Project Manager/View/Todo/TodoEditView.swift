@@ -93,7 +93,7 @@ struct TodoEditView: View {
                         .tint(Color.red)
                     }
                 }
-            .confirmationDialog("Emin misin?", isPresented: $deleteConfirmationBool) {
+            .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationBool) {
                 Button("Delete the item") {
                     deleteConfirmationBool = false
                     isBool = false

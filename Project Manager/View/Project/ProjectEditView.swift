@@ -43,7 +43,7 @@ struct ProjectEditView: View {
                                         RoundedRectangle(cornerRadius: 6)
                                             .stroke(Color(.systemGray3), lineWidth: 2)
                                     }
-                                    .frame(minHeight: 30)
+                                    .frame(minHeight: 40)
                                     .autocorrectionDisabled()
                             }
                         }
@@ -81,7 +81,7 @@ struct ProjectEditView: View {
             }
             .navigationTitle("Edit Project")
             
-            .confirmationDialog("Emin misin?", isPresented: $deleteConfirmationAlert) {
+            .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationAlert) {
                 Button("Delete item") {
                     do{
                         if try projectVM.deleteProject(project: temp_project){
@@ -92,7 +92,7 @@ struct ProjectEditView: View {
                     }
                 }.tint(.red)
             } message: {
-                Text("Yapılan işlem geri alınamaz")
+                Text("You can not recover the deleted item!")
             }
         }
     }

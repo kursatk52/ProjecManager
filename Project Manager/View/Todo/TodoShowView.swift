@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct TodoShowView: View {
-    var temp_todo : Todo = Todo(title: "Başlık", description: "Açıklama", status: .ToDo)
+    var temp_todo : Todo
     var body: some View {
         
         HStack {
             VStack(alignment: .leading, spacing: 20){
-                Text("Status: \(temp_todo.status.rawValue)").font(.headline)
+                HStack(spacing: 8){
+                    Text("Status:")
+                        .font(.headline)
+                    Text(temp_todo.status.rawValue)
+                        .foregroundColor(temp_todo.status.color)
+                        .font(.headline)
+                }
                 Text(temp_todo.description)
                     .multilineTextAlignment(.leading)
                 Spacer()
@@ -23,12 +29,12 @@ struct TodoShowView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color(.systemGray6))
-        .navigationTitle(temp_todo.title)
+        .navigationTitle("👓 " + temp_todo.title)
     }
 }
 
 struct TodoShowView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoShowView()
+        TodoShowView(temp_todo: Todo(title: "", description: "Açıklama", status: .ToDo))
     }
 }

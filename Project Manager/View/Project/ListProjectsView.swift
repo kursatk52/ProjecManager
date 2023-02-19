@@ -30,6 +30,8 @@ struct ListProjectsView: View {
                     } label: {
                         VStack(alignment: .leading){
                             Text(project.name)
+                                .font(.headline)
+                                
                             Text(project.description).lineLimit(1)
                         }
                         .swipeActions(edge: .leading) {
@@ -65,7 +67,7 @@ struct ListProjectsView: View {
                     
                 }
             }
-            .navigationTitle("Projects")
+            .navigationTitle("🗓️ Projects")
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -77,7 +79,7 @@ struct ListProjectsView: View {
                 }
             })
             .background(Color(.systemGray6))
-            .confirmationDialog("Emin misin?", isPresented: $deleteConfirmationAlert) {
+            .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationAlert) {
                 Button("Delete the item") {
                     do{
                         let _ = try projectVM.deleteProject(project: temp_project)
@@ -88,7 +90,7 @@ struct ListProjectsView: View {
                     temp_project = ProjectViewModel.emptyProject
                 }.tint(.red)
             } message: {
-                Text("Yapılan işlem geri alınamaz")
+                Text("You can not recover the deleted item!")
             }
             .onAppear{
                 projectVM.load()
